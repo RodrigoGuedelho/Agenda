@@ -1,6 +1,6 @@
 
 import React from 'react';
-import {Card, Button} from 'react-bootstrap'
+import {Card} from 'react-bootstrap'
 
 import './index.css'
 
@@ -15,15 +15,12 @@ import './index.css'
           <Card bg="dark" text="white" >
           <Card.Header >I love software development :)</Card.Header>
           <Card.Body>
-            <center>
-              
+            <center>        
               <br />  
-              <small ><b>Email: </b>rodrigohmjj97@hotmail.com</small>
-             
+              <small ><b>Email: </b>rodrigohmjj97@hotmail.com</small>  
             </center>
-            
-            <Card.Title >copyright © 2020</Card.Title>
-            
+      
+            <Card.Title >copyright © 2020</Card.Title>      
           </Card.Body>
           </Card>
         </footer>
