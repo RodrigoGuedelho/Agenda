@@ -42,7 +42,7 @@ class AgendaController {
 
   async find(req, res) {
     const agenda = await Agenda.findAll({where :{nome: {
-      [Op.like]: '%' + req.body.nome + '%'
+      [Op.iLike]: '%' + req.body.nome + '%'
     }}})
     
     if (!agenda)
