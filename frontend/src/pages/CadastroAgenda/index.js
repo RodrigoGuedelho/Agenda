@@ -39,7 +39,7 @@ export default class CadastroAgenda extends Component {
           messageAlert: 'Cadastro realizado com sucesso.'
         })
         this.clearVariables()
-     }
+      }
       else
         this.setState({
           showAlert: true, variantAlert: 'danger',
@@ -103,7 +103,7 @@ export default class CadastroAgenda extends Component {
             </Row>
             <Row md={2} >
               <Col>
-                <Button variant="success" type="submit">Salvar</Button>
+                <Button variant="success" type="submit" style={{marginRight: '5px' }}>Salvar</Button>
                 <Button variant="primary" href="/">Sair</Button>
               </Col>
             </Row>
