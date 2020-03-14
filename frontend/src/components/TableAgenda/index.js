@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Table, Button, Form, Row, Col} from 'react-bootstrap'
-
+import ButtonDelete from "../ButtonDelete"
 import api from "../../services/api";
 // import { Container } from './styles';
 
@@ -16,12 +16,20 @@ export default class TableAgenda extends Component{
     this.setState({agendas : agendas.data});
   }
 
+  async  shouldComponentUpdate() {
+    const agendas = await api.post("/agenda/find", {nome: this.state.pesquisa})
+    
+    await this.setState({agendas : agendas.data}); 
+  }
   handleChange = async e => { 
     await this.setState({ [e.target.name]: e.target.value });
     const agendas = await api.post("/agenda/find", {nome: this.state.pesquisa})
     
     await this.setState({agendas : agendas.data}); 
   };
+  handleCLick = e =>{
+    this.setState({showModalCancellation: true})
+  }
   render(){
     return ( 
       <>
@@ -62,7 +70,7 @@ export default class TableAgenda extends Component{
                 <td>
                   <center>
                     <Button variant="success">Editar</Button> 
-                    <Button variant="danger">Deletar</Button>
+                    <ButtonDelete urlRequest="/agenda/delete/" idAgenda={agenda.id} />             
                   </center>
                 </td>
               </tr>
