@@ -11,6 +11,7 @@ export default function Routes() {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/cadastro" component={CadastroAgenda} />
+         <Route path="/editar/:id" component={CadastroAgenda} />
       </Switch>
     </BrowserRouter>
   )
