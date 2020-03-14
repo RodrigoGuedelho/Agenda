@@ -11,7 +11,8 @@ export default class CadastroAgenda extends Component {
     github: "",
     showAlert: false,
     variantAlert: "",
-    messageAlert: ""
+    messageAlert: "",
+    id: 0
   };
 
   clearVariables() {
@@ -19,11 +20,30 @@ export default class CadastroAgenda extends Component {
       nome: "",
       email: "",
       telefone: "",
-      github: ""
+      github: "",
+      id: 0
     })
   }
-  handleOnSubmit = async e => {
-    e.preventDefault(e);
+
+  async componentDidMount(){
+    if(this.props.match.params.id){
+      console.log('entrou e o id = ' + this.props.match.params.id)
+      const agenda = await api.get('/agenda/find/' + this.props.match.params.id)
+      
+      if (agenda){
+        this.setState({
+          id: agenda.data.id,
+          nome: agenda.data.nome,
+          email: agenda.data.email,
+          telefone: agenda.data.telefone,
+          github: agenda.data.github
+        })
+      }
+    }
+    
+  }
+
+  async save() {
     try {
       const agenda = await api.post("/agenda/store",
         {
@@ -53,6 +73,48 @@ export default class CadastroAgenda extends Component {
         error
       })
     }
+  } 
+
+  async update() {
+    try {
+      const agenda = await api.post("/agenda/update",
+        {
+          id: this.state.id,
+          nome: this.state.nome,
+          email: this.state.email,
+          telefone: this.state.telefone,
+          github: this.state.github
+        }
+      );
+      if (agenda) {      
+        this.setState({
+          showAlert: true, variantAlert: 'success',
+          messageAlert: 'Cadastro editado com sucesso.'
+        })
+        this.clearVariables()
+      }
+      else
+        this.setState({
+          showAlert: true, variantAlert: 'danger',
+          messageAlert: 'Erro ao tenta realizar cadastro, por favor tente novamente.'
+        })
+
+    } catch (error) {
+       this.setState({
+        showAlert: true, variantAlert: 'danger',
+        messageAlert: 'Erro ao tenta realizar cadastro, por favor tente novamente. ' + 
+        error
+      })
+    }
+  }
+
+  handleOnSubmit = async e => {
+    e.preventDefault(e)
+    //Quando for um novo cadastro
+    if (this.state.id === 0) 
+      this.save()
+    else // Quando for editar um cadastro
+      this.update()
   };
   render() {
     return (

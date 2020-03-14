@@ -69,7 +69,7 @@ export default class TableAgenda extends Component{
                 <td>{agenda.github}</td>
                 <td>
                   <center>
-                    <Button variant="success">Editar</Button> 
+                    <Button variant="success" href={"/editar/" + agenda.id}>Editar</Button> 
                     <ButtonDelete urlRequest="/agenda/delete/" idAgenda={agenda.id} />             
                   </center>
                 </td>
