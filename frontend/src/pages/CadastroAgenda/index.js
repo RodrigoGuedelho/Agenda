@@ -132,7 +132,8 @@ export default class CadastroAgenda extends Component {
                 <Form.Group controlId="nome" >
                   <Form.Label>Nome:</Form.Label>
                   <Form.Control type="text" placeholder="Nome" value={this.state.nome}
-                    onChange={e => this.setState({ nome: e.target.value })} />
+                    onChange={e => this.setState({ nome: e.target.value })} required={true} 
+                      minLength={8} maxLength={80} />
                 </Form.Group>
               </Col>
               <Col>
@@ -140,18 +141,20 @@ export default class CadastroAgenda extends Component {
                   <Form.Label>Email:</Form.Label>
                   <Form.Control type="email" placeholder="Email@Exemplo.com" 
                     value={this.state.email} 
-                      onChange={e => this.setState({ email: e.target.value })} />
+                      onChange={e => this.setState({ email: e.target.value })} required={true}
+                        minLength={10}  maxLength={80}/>
                 </Form.Group>
               </Col>
             </Row>
 
             <Row md={3}>
               <Col sm={3}>
-                <Form.Group controlId="nome" >
+                <Form.Group controlId="telefone" >
                   <Form.Label>Telefone:</Form.Label>
                   <Form.Control type="text" placeholder="(XX) 9XXXX-XXXX" 
                     value={this.state.telefone}
-                    onChange={e => this.setState({ telefone: e.target.value })} />
+                    onChange={e => this.setState({ telefone: e.target.value })} 
+                      required={true} minLength={11} maxLength={15} />
                 </Form.Group>
               </Col>
               <Col sm={9}>
@@ -159,7 +162,8 @@ export default class CadastroAgenda extends Component {
                   <Form.Label>Github:</Form.Label>
                   <Form.Control type="text" placeholder="github.com/usuario" 
                   value={this.state.github}
-                    onChange={e => this.setState({ github: e.target.value })} />
+                    onChange={e => this.setState({ github: e.target.value })} 
+                      required={true} minLength={10}  maxLength={80}/>
                 </Form.Group>
               </Col>
             </Row>
