@@ -5,7 +5,7 @@ class AgendaController {
   async store(req, res) {
     const agendaExist = await Agenda.findOne({where :{email: req.body.email}})
     if (agendaExist) 
-      return req.json(res.status(400).json({error: 'Agenda já existe'}))
+      return req.json(res.status(400).json({error: 'Agenda com esse email já existe'}))
     const agenda = await Agenda.create(req.body)
 
     return res.json(agenda)
