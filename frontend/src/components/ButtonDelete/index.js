@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Modal, Button, Form} from 'react-bootstrap'
 import api from "../../services/api"
+import { FiTrash } from "react-icons/fi"
 
 export default class ButtonDelete extends Component{
   state = {show: false}
@@ -26,7 +27,9 @@ export default class ButtonDelete extends Component{
   render(){
     return (
       <>  
-        <Button variant="danger" onClick={this.handleShow}>Deletar</Button>
+        <Button variant="danger" onClick={this.handleShow}>
+          <FiTrash size={18} color="#fff" />
+        </Button>
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Aviso</Modal.Title>

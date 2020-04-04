@@ -3,6 +3,8 @@ import React, { Component, Fragment } from 'react';
 import { Container, Button, Form, Col, Row, Alert } from 'react-bootstrap'
 import api from "../../services/api"
 
+import {Link} from 'react-router-dom'
+
 export default class CadastroAgenda extends Component {
   state = {
     nome: "",
@@ -170,7 +172,7 @@ export default class CadastroAgenda extends Component {
             <Row md={2} >
               <Col>
                 <Button variant="success" type="submit" style={{marginRight: '5px' }}>Salvar</Button>
-                <Button variant="primary" href="/">Sair</Button>
+                <Link className="btn btn-primary" variant="primary" to="/">Sair</Link>
               </Col>
             </Row>
           </Form>

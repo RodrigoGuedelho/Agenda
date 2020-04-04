@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Table, Button, Form, Row, Col} from 'react-bootstrap'
 import ButtonDelete from "../ButtonDelete"
 import api from "../../services/api";
+import { FiEdit, FiPlus, FiSearch} from 'react-icons/fi'
+import {Link} from 'react-router-dom'
 // import { Container } from './styles';
 
 export default class TableAgenda extends Component{
@@ -35,7 +37,9 @@ export default class TableAgenda extends Component{
       <>
          <Row md={3}>
             <Col>
-              <Button variant="primary" href="/cadastro">Novo</Button>
+              <Link className="btn btn-primary" variant="primary" to="/cadastro">
+                <FiPlus size={18} color="#fff" />
+              </Link>
             </Col>    
           </Row>
         <br/> 
@@ -43,7 +47,7 @@ export default class TableAgenda extends Component{
           <Col>
             <Form.Group controlId="nome" >
               <Form.Control  type="text"  name="pesquisa" placeholder="Buscar " 
-                  onChange={this.handleChange} />
+                  onChange={this.handleChange}  />
             </Form.Group>
           </Col>
         </Row> 
@@ -69,7 +73,9 @@ export default class TableAgenda extends Component{
                 <td>{agenda.github}</td>
                 <td>
                   <center>
-                    <Button variant="success" href={"/editar/" + agenda.id}>Editar</Button> 
+                    <Button variant="success" href={"/editar/" + agenda.id} style={{marginRight: "5px"}}>
+                      <FiEdit size={18} color= "#fff" />
+                    </Button> 
                     <ButtonDelete urlRequest="/agenda/delete/" idAgenda={agenda.id} />             
                   </center>
                 </td>
