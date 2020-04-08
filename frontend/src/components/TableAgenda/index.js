@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import {Table, Button, Form, Row, Col} from 'react-bootstrap'
 import ButtonDelete from "../ButtonDelete"
 import api from "../../services/api";
-import { FiEdit, FiPlus, FiSearch} from 'react-icons/fi'
+import { FiEdit, FiPlus, FiDownload} from 'react-icons/fi'
 import {Link} from 'react-router-dom'
+import RelAgenda from '../../reports/RelAgenda'
 // import { Container } from './styles';
 
 export default class TableAgenda extends Component{
@@ -32,6 +33,11 @@ export default class TableAgenda extends Component{
   handleCLick = e =>{
     this.setState({showModalCancellation: true})
   }
+
+  handleCLickReport = e =>{
+    const report = new RelAgenda()
+    report.create(this.state.agendas)
+  }
   render(){
     return ( 
       <>
@@ -40,6 +46,11 @@ export default class TableAgenda extends Component{
               <Link className="btn btn-primary" variant="primary" to="/cadastro">
                 <FiPlus size={18} color="#fff" />
               </Link>
+              <Button variant="primary" style={{marginLeft: '5px'}} 
+                onClick= {this.handleCLickReport}> 
+                <FiDownload size={18} color="#fff" style={{marginRight: 5}}/> 
+                PDF
+              </Button>
             </Col>    
           </Row>
         <br/> 
@@ -80,9 +91,7 @@ export default class TableAgenda extends Component{
                   </center>
                 </td>
               </tr>
-            )}
-            
-            
+            )}       
           </tbody>
         </Table>
       </>
