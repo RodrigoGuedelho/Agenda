@@ -14,7 +14,9 @@ export default class RelAgenda {
     var body = agendas.map(item => [item.id, item.nome, item.email, item.telefone, item.github])
     report.autoTable(nameColumns, body, {theme: 'grid', margin: { top: 110 }}); 
 
-    report.save('relatorio.pdf') 
+    //report.output('dataurlnewwindow');
+    window.open(report.output('bloburl'), '_blank')
+    //report.save('relatorio.pdf') 
   }
 
   
